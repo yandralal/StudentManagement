@@ -1,4 +1,4 @@
-﻿@model StudentManagement.Models.LoginViewModel
+﻿@model StudentManagement.Models.Login
 
 @{
     ViewBag.Title = "Login";
@@ -8,12 +8,16 @@
     <div class="row w-100">
         <div class="col-md-6">
             <h4>Login</h4>
+            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+            }
 
             @using (Html.BeginForm("Login", "Home", FormMethod.Post))
             {
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email)
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Username)
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Password)
@@ -22,8 +26,7 @@
                 <div class="mt-3">
                     <button type="submit" class="btn btn-sm btn-primary">Login</button>
                 </div>
-            }          
+            }
         </div>
     </div>
 </div>
-
