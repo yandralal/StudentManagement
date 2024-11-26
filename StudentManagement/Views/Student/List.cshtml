@@ -1,0 +1,41 @@
+﻿@model IEnumerable<StudentManagement.Models.Student>
+
+@{
+    ViewBag.Title = "Student List";
+}
+
+<h4>Student List</h4>
+
+<div class="d-flex justify-content-between mb-3">
+    @Html.ActionLink("Register New Student", "Register", "Student", new { @class = "btn btn-primary btn-sm" })
+    @Html.ActionLink("Logout", "Logout", "Home", new { @class = "btn btn-danger btn-sm" })
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Department</th>
+            <th>Email</th>
+            <th>Date of Birth</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+                <td>@student.Department</td>
+                <td>@student.Email</td>
+                <td>@student.DateOfBirth.ToShortDateString()</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = student.Id }, new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("Delete", "Delete", new { id = student.Id }, new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Are you sure you want to delete this student?');" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
